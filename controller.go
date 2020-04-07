@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 //Index function to check route
@@ -132,7 +134,7 @@ func (a *App) UpdateActivity(w http.ResponseWriter, r *http.Request) {
 
 	}()
 
-	ID, err := strconv.Atoi(r.FormValue("id"))
+	ID, err := strconv.Atoi(mux.Vars(r)["id"])
 	if err != nil {
 		log.Println(err)
 		res.Message = err.Error()
@@ -180,7 +182,7 @@ func (a *App) DeleteActivity(w http.ResponseWriter, r *http.Request) {
 
 	}()
 
-	ID, err := strconv.Atoi(r.FormValue("id"))
+	ID, err := strconv.Atoi(mux.Vars(r)["id"])
 	if err != nil {
 		log.Println(err)
 		res.Message = err.Error()

@@ -16,8 +16,8 @@ func (a *App) initRouter() *mux.Router {
 	r.HandleFunc("/", Index).Methods("GET")
 	r.HandleFunc("/api/activity/list", a.GetActivityList).Methods("GET")
 	r.HandleFunc("/api/activity/create", a.InsertActivity).Methods("POST")
-	r.HandleFunc("/api/activity/update", a.UpdateActivity).Methods("PUT")
-	r.HandleFunc("/api/activity/delete", a.DeleteActivity).Methods("DELETE")
+	r.HandleFunc("/api/activity/update/{id}", a.UpdateActivity).Methods("PUT")
+	r.HandleFunc("/api/activity/delete/{id}", a.DeleteActivity).Methods("DELETE")
 
 	r.Use(loggingMiddleware)
 
